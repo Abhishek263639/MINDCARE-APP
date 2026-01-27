@@ -1,0 +1,47 @@
+<div class="profile-page container animate-fade-in-up">
+  <h1 class="page-title">Profile & Settings</h1>
+  
+  <div class="profile-header glass-card animate-fade-in-up delay-1">
+    <div class="profile-avatar">
+      <span>A</span>
+    </div>
+    <div class="profile-info">
+      <h2>ABHISHEK SINGH</h2>
+      <p>abhisingh@mindcare.in</p>
+    </div>
+  </div>
+
+  <div class="settings-card glass-card animate-fade-in-up delay-2">
+    <h2 class="card-title">Settings</h2>
+    
+    <div class="setting-item">
+      <span class="setting-label">Dark Mode</span>
+      <label class="toggle-switch">
+        <input type="checkbox" [checked]="darkMode()" (change)="toggleDarkMode.emit()">
+        <span class="slider"></span>
+      </label>
+    </div>
+    
+    <div class="setting-item">
+      <span class="setting-label">Mood Reminders</span>
+      <label class="toggle-switch">
+        <input type="checkbox" [checked]="moodRemindersEnabled()" (change)="moodRemindersEnabled.set(!moodRemindersEnabled())">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-item">
+      <span class="setting-label">Suggestion Alerts</span>
+      <label class="toggle-switch">
+        <input type="checkbox" [checked]="suggestionAlertsEnabled()" (change)="suggestionAlertsEnabled.set(!suggestionAlertsEnabled())">
+        <span class="slider"></span>
+      </label>
+    </div>
+      
+  </div>
+
+  <button (click)="changePage.emit('login')" class="logout-button animate-fade-in-up delay-3">
+    Log Out
+  </button>
+
+</div>

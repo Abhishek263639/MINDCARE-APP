@@ -1,0 +1,132 @@
+.app-wrapper {
+  padding-bottom: 80px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-violet);
+}
+
+.app-header-landing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+.app-header-landing .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.primary-button {
+  background-color: var(--color-violet);
+  color: white;
+  padding: 0.6rem 1.25rem;
+  border-radius: 99px;
+  font-weight: 600;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 15px -2px rgba(124, 58, 237, 0.4);
+}
+.primary-button:hover {
+  background-color: var(--color-violet-dark);
+  box-shadow: 0 6px 20px -2px rgba(124, 58, 237, 0.5);
+}
+
+.app-header-desktop {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--card-border);
+  display: none;
+}
+
+.app-header-desktop .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.nav-desktop {
+  display: flex;
+  gap: 1.5rem;
+}
+.nav-desktop button {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+}
+.nav-desktop button:hover {
+  color: var(--text-primary);
+}
+.nav-desktop button.active {
+  color: var(--color-violet);
+  border-bottom-color: var(--color-violet);
+}
+
+.app-nav-mobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--card-border);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-around;
+  height: 70px;
+  padding: 0.5rem;
+}
+
+body.dark .app-nav-mobile {
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+}
+
+.app-nav-mobile button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 70px;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  border-radius: 0.75rem;
+}
+.app-nav-mobile button .icon {
+  font-size: 1.5rem;
+}
+.app-nav-mobile button .text {
+  font-size: 0.75rem;
+}
+.app-nav-mobile button.active {
+  color: var(--color-violet);
+  background: var(--color-violet-light);
+}
+body.dark .app-nav-mobile button.active {
+  background: var(--item-bg);
+}
+
+@media (min-width: 768px) {
+  .app-wrapper {
+    padding-bottom: 0;
+  }
+  .app-header-desktop {
+    display: block;
+  }
+  .app-nav-mobile {
+    display: none;
+  }
+}

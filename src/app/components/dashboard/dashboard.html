@@ -1,0 +1,129 @@
+<div class="container">
+  <h1 class="page-title animate-fade-in-up">Good morning, Alex!</h1>
+  
+  <div class="dashboard-grid">
+    
+    <div class="main-column">
+      
+      <div class="glass-card animate-fade-in-up delay-1">
+        <h2 class="card-title">How are you feeling today?</h2>
+        <div class="mood-tracker">
+          @for (mood of userMoods; track mood.label) {
+            <button 
+              (click)="selectMood(mood.label)"
+              class="mood-button"
+              [class.active]="selectedMood() === mood.label"
+            >
+              <span class="emoji">{{ mood.emoji }}</span>
+              <span class="label">{{ mood.label }}</span>
+            </button>
+          }
+        </div>
+      </div>
+      
+      <div class="glass-card animate-fade-in-up delay-2">
+        <div class="graph-header">
+          <h2 class="card-title">Your Week in Review</h2>
+          <div class="legend">
+            <span class="legend-item"><div class="key mood-bar"></div> Mood</span>
+            <span class="legend-item"><div class="key sleep-bar"></div> Sleep</span>
+          </div>
+        </div>
+        <div class="mood-graph">
+          @for (day of weeklyChartData(); track day.day) {
+            <div class="graph-bar-container">
+              <div 
+                class="graph-bar mood-bar"
+                [class]="getMoodColor(day.moodLevel)"
+                [style.height.%]="day.moodLevel"
+              ></div>
+              <div 
+                class="graph-bar sleep-bar"
+                [style.height.%]="day.sleepHours * 10"
+              ></div>
+              
+              <span class="graph-label">{{ day.day }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="glass-card animate-fade-in-up delay-3">
+        <h2 class="card-title">Past Entries</h2>
+        @if (journalHistory().length === 0) {
+          <p class="no-entries">Your saved journal entries will appear here.</p>
+        } @else {
+          <div class="past-entries-list">
+            @for (entry of journalHistory(); track entry.date) {
+              <div class="entry-item animate-fade-in-up">
+                <div class="entry-header">
+                  <span class="entry-mood">{{ entry.mood }} {{ entry.emoji }}</span>
+                  <span class="entry-date">{{ entry.date.toLocaleDateString() }} {{ entry.date.toLocaleTimeString() }}</span>
+                </div>
+                @if (entry.entry) {
+                  <p class="entry-text">{{ entry.entry }}</p>
+                }
+                @if (entry.sleepHours) {
+                  <p class="entry-sleep">Slept for: <strong>{{ entry.sleepHours }} hours</strong></p>
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+    </div>
+    
+    <div class="sidebar-column">
+      
+      <div class="glass-card animate-fade-in-up delay-1">
+        <h2 class="card-title">Daily Entry</h2>
+        <p class="journal-mood">Your selected mood: <strong>{{ selectedMood() }}</strong></p>
+        
+        <textarea
+          #journalTextarea
+          class="journal-textarea"
+          placeholder="What's on your mind...?"
+          (input)="journalEntry.set(journalTextarea.value)"
+          [value]="journalEntry()"
+        ></textarea>
+        
+        <label for="sleep-input" class="sleep-label">Last Night's Sleep (hours):</label>
+        <input 
+          id="sleep-input"
+          type="number"
+          class="sleep-input"
+          placeholder="e.g., 8"
+          (input)="sleepInput.set($any($event.target).value)"
+          [value]="sleepInput()"
+        />
+
+        <button (click)="saveJournalEntry()" class="journal-save-button">
+          Save Entry
+        </button>
+      </div>
+      
+      <div class="glass-card widget-card animate-fade-in-up delay-2">
+        <div class="widget-text">
+          <h2 class="card-title">Today's Stress Level</h2>
+          <p class="value {{ currentStressLevel().class }}">{{ currentStressLevel().label }}</p>
+        </div>
+        <span class="widget-icon">{{ currentStressLevel().icon }}</span>
+      </div>
+      
+      <div class="glass-card widget-card animate-fade-in-up delay-3">
+        <div class="widget-text">
+          <h2 class="card-title">Last Night's Sleep</h2>
+          <p class="value value-sleep">
+            {{ todaysSleep().hours }}
+            @if(todaysSleep().unit) {
+              <span class="unit">{{ todaysSleep().unit }}</span>
+            }
+          </p>
+        </div>
+        <span class="widget-icon">😴</span>
+      </div>
+
+    </div>
+  </div>
+</div>

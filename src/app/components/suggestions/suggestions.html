@@ -1,0 +1,116 @@
+<div class="container">
+                
+  @if (currentActivity() === null) {
+    <div class="suggestions-list">
+      <h1 class="page-title animate-fade-in-up">AI Wellness Suggestions</h1>
+      <p class="suggestions-subtitle animate-fade-in-up delay-1">Based on your recent mood, here are a few activities that might help.</p>
+      
+      <div class="suggestions-grid">
+        
+        <div class="suggestion-card animate-fade-in-up delay-1">
+          <div class="suggestion-icon icon-meditation">
+            <span>🧘</span>
+          </div>
+          <h3>Guided Meditation</h3>
+          <p>A 10-minute session to clear your mind and find focus.</p>
+          <button (click)="startActivity('Guided Meditation')" class="suggestion-button btn-meditation">Start Session</button>
+        </div>
+        
+        <div class="suggestion-card animate-fade-in-up delay-2">
+          <div class="suggestion-icon icon-walk">
+            <span>👟</span>
+          </div>
+          <h3>Mindful Walk</h3>
+          <p>Take a 20-minute walk outside and focus on your surroundings.</p>
+          <button (click)="startActivity('Mindful Walk')" class="suggestion-button btn-walk">Start Activity</button>
+        </div>
+        
+        <div class="suggestion-card animate-fade-in-up delay-3">
+          <div class="suggestion-icon icon-music">
+            <span>🎶</span>
+          </div>
+          <h3>Calm Playlist</h3>
+          <p>Listen to this curated playlist of relaxing, instrumental music.</p>
+          <button (click)="startActivity('Calm Playlist')" class="suggestion-button btn-music">Open Playlist</button>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="activity-player">
+      <div class="activity-card glass-card animate-fade-in-up">
+        <button (click)="endActivity()" class="activity-back-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+        </button>
+
+        @switch(currentActivity()) {
+          
+          @case('Calm Playlist') {
+            <h2>Calm Playlist</h2>
+
+            <div class="volume-control">
+              <span>🔈</span>
+              <input 
+                type="range" 
+                min="0" 
+                max="100" 
+                [value]="volume()" 
+                (input)="changeVolume($event)"
+                class="volume-slider"
+              >
+              <span>🔊</span>
+            </div>
+
+            <div class="playlist">
+              @for (track of calmPlaylist; track track.title) {
+                <div class="track-item" [class.playing]="nowPlaying() === track.title">
+                  <div class="track-info">
+                    <div class="track-title">{{ track.title }}</div>
+                    <div class="track-artist">{{ track.artist }}</div>
+                  </div>
+                  <button (click)="togglePlay(track.title)" class="play-button">
+                    @if (nowPlaying() === track.title) {
+                      <span>❚❚</span>
+                    } @else {
+                      <span>▶</span>
+                    }
+                  </button>
+                </div>
+              }
+            </div>
+            <button (click)="endActivity()" class="activity-finish-button">
+              Finish Listening
+            </button>
+          }
+          
+          @case('Guided Meditation') {
+            <h2>Guided Meditation</h2>
+            <div class="breathing-animation">
+              <div 
+                class="breathing-circle" 
+                [class]="meditationAnimationClass()"
+                [style.transition-duration]="meditationState() === 'Inhale' || meditationState() === 'Exhale' ? '4000ms' : '2000ms'"
+              ></div>
+              <span class="breathing-text">
+                {{ meditationState() }}
+              </span>
+            </div>
+            <p>Follow the guide. Breathe deeply.</p>
+            <button (click)="endActivity()" class="activity-finish-button">
+              Finish Session
+            </button>
+          }
+
+          @case('Mindful Walk') {
+            <h2>Mindful Walk</h2>
+            <p class="timer-display">{{ formattedTimer() }}</p>
+            <p>Time Remaining</p>
+            <p class="walk-prompt">Focus on your surroundings and your breath.</p>
+            <button (click)="endActivity()" class="activity-finish-button btn-walk">
+              Finish Activity
+            </button>
+          }
+        }
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,298 @@
+.suggestions-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+  
+  .suggestions-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .suggestion-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+  }
+  body.dark .suggestion-card {
+    background: #1f2937;
+  }
+  .suggestion-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1);
+  }
+  body.dark .suggestion-card:hover {
+    box-shadow: 0 10px 30px -5px rgba(0,0,0,0.2);
+  }
+  
+  .suggestion-icon {
+    display: inline-flex;
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+  .suggestion-icon.icon-meditation { background: var(--color-violet-light); }
+  .suggestion-icon.icon-walk { background: #d1fae5; }
+  .suggestion-icon.icon-music { background: #dbeafe; }
+  
+  body.dark .suggestion-icon.icon-meditation { background: rgba(124, 58, 237, 0.2); }
+  body.dark .suggestion-icon.icon-walk { background: rgba(16, 185, 129, 0.2); }
+  body.dark .suggestion-icon.icon-music { background: rgba(59, 130, 246, 0.2); }
+  
+  
+  .suggestion-icon span {
+    font-size: 2.5rem;
+  }
+  
+  .suggestion-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+  .suggestion-card p {
+    color: var(--text-secondary);
+    margin: 0.5rem 0 1rem;
+    min-height: 40px;
+  }
+  
+  .suggestion-button {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s;
+  }
+  .suggestion-button.btn-meditation { background-color: var(--color-violet); }
+  .suggestion-button.btn-walk { background-color: var(--color-green); }
+  .suggestion-button.btn-music { background-color: var(--color-blue); }
+  
+  .suggestion-button:hover {
+    opacity: 0.9;
+  }
+  
+  .activity-player {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .activity-card {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+  }
+  .activity-back-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    padding: 0.5rem;
+    border-radius: 50%;
+  }
+  .activity-back-button:hover {
+    background: rgba(0,0,0,0.05);
+  }
+  body.dark .activity-back-button:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  .activity-card h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .activity-card p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+  .activity-finish-button {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: var(--color-violet);
+    margin-top: 2rem;
+    transition: all 0.3s;
+  }
+  .activity-finish-button:hover {
+    background: var(--color-violet-dark);
+  }
+  .activity-finish-button.btn-walk {
+    background: var(--color-green);
+  }
+  .activity-finish-button.btn-walk:hover {
+    background: #059669;
+  }
+  
+  .timer-display {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-green);
+    margin: 1.5rem 0 0.5rem;
+  }
+  .walk-prompt {
+    margin-top: 1.5rem;
+  }
+  
+  .breathing-animation {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .breathing-circle {
+    width: 100%;
+    height: 100%;
+    background: var(--color-violet-light);
+    border-radius: 50%;
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
+  }
+  body.dark .breathing-circle {
+    background: var(--item-bg);
+  }
+  
+  .breathing-circle.meditation-inhale { 
+    transform: scale(1.25);
+    transition-duration: 4000ms; 
+  }
+  .breathing-circle.meditation-exhale { 
+    transform: scale(0.8);
+    transition-duration: 6000ms;
+  }
+  
+  .breathing-text {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-violet);
+  }
+  body.dark .breathing-text {
+    color: white;
+  }
+  
+  .playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: left;
+  }
+  .track-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: var(--color-violet-light);
+    border-radius: 0.75rem;
+    transition: all 0.3s;
+  }
+  body.dark .track-item {
+    background: var(--item-bg);
+  }
+  .track-item.playing {
+    background: var(--color-violet);
+    color: white;
+  }
+  .track-item.playing .track-artist {
+    color: #ddd;
+  }
+  .track-item.playing .play-button {
+    color: white;
+  }
+  .track-info .track-title {
+    font-weight: 600;
+  }
+  .track-info .track-artist {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+  .play-button {
+    font-size: 1.5rem;
+    color: var(--color-violet);
+    padding: 0.5rem;
+    border-radius: 50%;
+  }
+  .play-button:hover {
+    background: rgba(0,0,0,0.05);
+  }
+  body.dark .play-button:hover {
+    background: rgba(255,255,255,0.05);
+  }
+  .track-item.playing .play-button:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  
+  /* --- NEW: Volume Slider Styles --- */
+  .volume-control {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .volume-control span {
+    font-size: 1.5rem;
+    opacity: 0.7;
+  }
+  
+  .volume-slider {
+    flex-grow: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: var(--color-violet-light);
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+  }
+  
+  .volume-slider:hover {
+    opacity: 1;
+  }
+  
+  .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--color-violet);
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .volume-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--color-violet);
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+  }
+  
+  body.dark .volume-slider {
+    background: var(--item-bg);
+  }
+  
+  
+  @media (min-width: 768px) {
+    .suggestions-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .suggestions-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }

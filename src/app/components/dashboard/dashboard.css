@@ -1,0 +1,301 @@
+.dashboard-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Mood Tracker */
+.mood-tracker {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+.mood-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s;
+  width: 70px;
+}
+.mood-button:hover {
+  transform: scale(1.1);
+  background: var(--color-violet-light);
+}
+body.dark .mood-button:hover {
+  background: var(--item-bg);
+}
+.mood-button.active {
+  background: var(--color-violet-light);
+  box-shadow: 0 0 0 2px var(--color-violet);
+}
+body.dark .mood-button.active {
+  background: var(--item-bg);
+}
+
+.mood-button .emoji {
+  font-size: 2.25rem;
+}
+.mood-button .label {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* --- FIXED: Mood Graph (Dual Bar) --- */
+.graph-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.legend {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.875rem;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-secondary);
+}
+.legend-item .key {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+.legend-item .mood-bar { background-color: var(--color-violet); }
+.legend-item .sleep-bar { background-color: var(--color-blue); }
+
+
+.mood-graph {
+  height: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 0.5rem; /* Reduced gap */
+  padding: 1rem 0.5rem 0;
+}
+.graph-bar-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  /* Make room for two bars */
+  position: relative;
+  height: 100%;
+  justify-content: flex-end;
+}
+.graph-bar {
+  width: 40%; /* Bars ko patla banaya */
+  border-radius: 0.25rem 0.25rem 0 0;
+  transition: all 0.5s ease-out;
+  position: absolute;
+  bottom: 0;
+}
+.graph-bar.mood-bar {
+  left: 5%; /* Left bar */
+}
+.graph-bar.sleep-bar {
+  right: 5%; /* Right bar */
+  background-color: var(--color-blue);
+}
+
+.graph-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-top: 250px; /* Graph height ke neeche rakhein */
+}
+
+.mood-0 { background-color: #e5e7eb; }
+.mood-20 { background-color: #f87171; }
+.mood-40 { background-color: #facc15; }
+.mood-60 { background-color: #60a5fa; }
+.mood-80 { background-color: #34d399; }
+.mood-100 { background-color: #22c55e; }
+body.dark .mood-0 { background-color: #374151; }
+
+
+/* --- FIXED: Journal Card Styles --- */
+.journal-mood {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+.journal-textarea {
+  width: 100%;
+  height: 100px; 
+  padding: 0.75rem;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  border: 1px solid var(--card-border);
+  background: rgba(255,255,255,0.3);
+  border-radius: 0.75rem;
+  color: var(--text-primary);
+  resize: none;
+  margin-bottom: 1rem; 
+}
+.journal-textarea:focus {
+  outline: none;
+  border-color: var(--color-violet);
+  box-shadow: 0 0 0 2px var(--color-violet-light);
+}
+body.dark .journal-textarea {
+  background: rgba(0,0,0,0.2);
+  border-color: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.sleep-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.sleep-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--card-border);
+  background: rgba(255,255,255,0.3);
+  border-radius: 0.75rem;
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+}
+.sleep-input:focus {
+  outline: none;
+  border-color: var(--color-violet);
+  box-shadow: 0 0 0 2px var(--color-violet-light);
+}
+body.dark .sleep-input {
+  background: rgba(0,0,0,0.2);
+  border-color: rgba(255,255,255,0.1);
+  color: white;
+}
+.sleep-input::-webkit-outer-spin-button,
+.sleep-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.sleep-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+.journal-save-button {
+  width: 100%;
+  margin-top: 1rem; /* Increased margin */
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  color: white;
+  background-color: var(--color-violet);
+  transition: all 0.3s;
+}
+.journal-save-button:hover {
+  background-color: var(--color-violet-dark);
+}
+
+.no-entries {
+  color: var(--text-secondary);
+}
+.past-entries-list {
+  margin-top: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.entry-item {
+  background: var(--color-violet-light);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--card-border);
+}
+body.dark .entry-item {
+  background: var(--item-bg);
+}
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.entry-mood {
+  font-weight: 600;
+}
+.entry-date {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+.entry-text {
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+}
+.entry-sleep {
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.widget-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.widget-text .value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* --- FIXED: Stress level colors --- */
+.widget-text .value-low { color: var(--color-green); }
+.widget-text .value-medium { color: #f59e0b; } /* Yellow/Amber */
+.widget-text .value-high { color: var(--color-red); }
+.widget-text .value-na { color: var(--text-secondary); }
+
+.widget-text .value-sleep { color: var(--color-blue); }
+
+.widget-text .unit {
+  font-size: 1rem;
+  margin-left: 0.25rem;
+}
+
+.widget-icon {
+  font-size: 3rem;
+  opacity: 0.7;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}

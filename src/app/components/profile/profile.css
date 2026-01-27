@@ -1,0 +1,127 @@
+.profile-page {
+    max-width: 768px;
+  }
+  
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .profile-avatar {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-violet), var(--color-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .profile-info h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  
+  .profile-info p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+  }
+  
+  .settings-card .card-title {
+    margin-bottom: 1.5rem;
+  }
+  
+  .setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--item-bg);
+    border-radius: 0.75rem;
+  }
+  .setting-item + .setting-item {
+    margin-top: 1rem;
+  }
+  
+  .setting-label {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  
+  .logout-button {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background-color: var(--color-red);
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px -2px rgba(239, 68, 68, 0.4);
+  }
+  .logout-button:hover {
+    opacity: 0.9;
+    box-shadow: 0 6px 20px -2px rgba(239, 68, 68, 0.5);
+  }
+  
+  /* --- Toggle Switch CSS --- */
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+  }
+  
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--toggle-bg);
+    transition: .4s;
+    border-radius: 28px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--color-violet);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(22px);
+  }
+  
+  @media (min-width: 640px) {
+    .profile-header {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
